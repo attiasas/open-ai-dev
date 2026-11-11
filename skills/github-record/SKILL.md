@@ -40,10 +40,9 @@ Type, exactly one:
 | --- | --- |
 | `type:spec` | Parent plan. Not implemented directly. |
 | `type:slice` | One mergeable change. |
-| `type:decision` | Points at an ADR. |
 | `type:bug` | A defect. Developed like a slice. |
 
-There is no `status:done`. No other status or type label exists.
+There is no `status:done` and no `type:decision`. No other status or type label exists.
 
 Replace a label. Remove only a label the issue already has, then add the one new label. `gh issue edit --remove-label` fails when the label is absent.
 
@@ -54,17 +53,15 @@ gh issue edit 17 --remove-label "status:ready" --add-label "status:in-progress"
 
 A `type:slice` or `type:bug` with no acceptance criteria is not ready. Its only status is `status:needs-info`. Do not leave it in progress while you ask, and do not invent criteria.
 
-A `type:decision` issue is `status:in-review` while the pull request that adds the ADR is open, and closes when that pull request merges. A survey candidate with no file yet is `status:inbox` only. `status:ready` is not a decision status.
-
 ## Where text lives
 
 | Text | Where |
 | --- | --- |
 | Specs, slices, task breakdowns | Issue body |
 | QA notes, need-info, duplicates | Comment on the pull request or issue |
-| Architecture decision | `docs/adr/NNNN-title.md` plus a `type:decision` issue that links to that path |
+| Architecture decision | `docs/adr/NNNN-title.md`. The pull request that adds the file is the GitHub record |
 
-The issue finds the decision. The file is the versioned text. Write both. The next `NNNN` is one higher than the highest ADR, ignoring `0000-template.md`.
+Do not open an issue for a decision. The file is the text. The next `NNNN` is one higher than the highest ADR, ignoring `0000-template.md`.
 
 Do not put specs, slices, or QA notes in the repo. `docs/specs/` and `docs/qa/` are not a record. Done is `gh issue close <n>` after the QA comment. Remove the status label first. A closed issue has no status label. Do not add a label for done, and do not leave `status:in-review` on it.
 
@@ -85,7 +82,7 @@ Do not put specs, slices, or QA notes in the repo. `docs/specs/` and `docs/qa/` 
 - `status:done`, or `status:in-review` left on an issue you are closing.
 - Spec or QA text committed under `docs/`.
 - `status:ready` or `status:in-progress` with no acceptance criteria.
-- A decision that is only a file, or only an issue.
+- A `type:decision` issue, or a decision whose text lives only in a pull request body.
 
 ## Rationalization
 
@@ -95,11 +92,11 @@ Do not put specs, slices, or QA notes in the repo. `docs/specs/` and `docs/qa/` 
 | "Put the QA note in docs/qa so it is versioned." | QA notes are comments. |
 | "Leave it in progress and ask for acceptance criteria." | No acceptance criteria means `status:needs-info`. |
 | "gh is logged out. Use the website, a file, or gh auth login, then continue." | Stop. Say `gh` is not authenticated. |
-| "The decision is settled, so status:ready. Swap it if they insist." | An open ADR pull request is `status:in-review`. A request does not add a label. |
-| "Add type:decision and type:spec, or two status labels." | Exactly one of each. |
+| "Open a type:decision issue so the backlog can find the ADR." | The pull request that adds the file is the GitHub record. There is no decision issue. |
+| "Add type:decision and type:spec, or two status labels." | There is no `type:decision`. Exactly one type label, from the table. |
 
 ## Red flags
 
-Stop if you are about to add a label that is not listed, leave two status or two type labels, commit spec or QA text under `docs/`, record a decision without both the file and the issue, write to GitHub after `gh auth status` failed, or set `status:ready` or `status:in-progress` with no acceptance criteria.
+Stop if you are about to add a label that is not listed, leave two status or two type labels, commit spec or QA text under `docs/`, open a decision issue, or record a decision without the ADR file, write to GitHub after `gh auth status` failed, or set `status:ready` or `status:in-progress` with no acceptance criteria.
 
 Apply the tables instead.
