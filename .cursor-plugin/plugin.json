@@ -1,0 +1,11 @@
+{
+  "name": "oss-cycle",
+  "description": "Engineering cycle for open source repositories. Plan, manage, architect, develop, and QA with GitHub as the work record and architecture decisions in docs/adr.",
+  "version": "0.1.0",
+  "author": {
+    "name": "attiasas"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/attiasas/open-ai-dev",
+  "keywords": ["github", "open-source", "planning", "architecture", "qa"]
+}
