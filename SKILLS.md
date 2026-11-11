@@ -8,7 +8,7 @@ Phase skills are user-invoked and do not call each other. They call the model-in
 
 | Skill | Calls | Writes | Status |
 | --- | --- | --- | --- |
-| `setup-cycle` | `github-record` | Labels, issue forms, pull request template, `AGENTS.md`, `docs/adr/0000-template.md` | planned |
+| `setup-cycle` | `github-record` | Labels, issue forms, pull request template, `AGENTS.md`, `docs/adr/0000-template.md` | written |
 | `plan` | `spec-issue`, then `slice-work` only when there is more than one mergeable piece | Spec and slice issues | planned |
 | `manage` | `github-record` | Label changes and short comments. Moves a blocked slice to `status:ready` when its blockers are closed | planned |
 | `architect` | `module-design` | One ADR plus a linked decision issue, or a survey of candidate decision issues | planned |
