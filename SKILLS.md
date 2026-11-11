@@ -19,7 +19,7 @@ Phase skills are user-invoked and do not call each other. They call the model-in
 
 | Skill | Called by | Writes | Status |
 | --- | --- | --- | --- |
-| `github-record` | `setup-cycle`, `manage`, and any skill that touches GitHub | The label set, `gh` usage, and where text lives | planned |
+| `github-record` | `setup-cycle`, `manage`, and any skill that touches GitHub | The label set, `gh` usage, and where text lives | written |
 | `spec-issue` | `plan` | Issue body: Problem, Acceptance, Non-goals, Modules, ADRs | planned |
 | `slice-work` | `plan` | Child issues with GitHub blocked-by links | planned |
 | `module-design` | `architect` | `docs/adr/NNNN-title.md` and the decision issue that links to it | planned |
