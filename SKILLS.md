@@ -22,7 +22,7 @@ Phase skills are user-invoked and do not call each other. They call the model-in
 | `github-record` | `setup-cycle`, `manage`, and any skill that touches GitHub | The label set, `gh` usage, and where text lives | written |
 | `spec-issue` | `plan` | Issue body: Problem, Acceptance, Non-goals, Modules, ADRs | written |
 | `slice-work` | `plan` | Child issues with GitHub blocked-by links | written |
-| `module-design` | `architect` | `docs/adr/NNNN-title.md` and the pull request that adds it | planned |
+| `module-design` | `architect` | `docs/adr/NNNN-title.md` and the pull request that adds it | written |
 | `tdd` | `develop` | A red-green-refactor loop for one issue, using the project's test command | planned |
 | `review-pr` | `qa` | Verdict comment: acceptance criteria, ADRs, test command result | planned |
 
