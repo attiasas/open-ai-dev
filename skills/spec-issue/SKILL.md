@@ -51,7 +51,7 @@ Use these headings, exactly these names, in this order. All five are present in 
 | Acceptance | Checkable criteria the requester gave. One bullet each |
 | Non-goals | What this change does not do |
 | Modules | Paths or modules the change touches |
-| ADRs | `docs/adr/NNNN-title.md` paths the change follows |
+| ADRs | `docs/adr/NNNN-title.md` paths the change follows. The file is the decision. Do not open an issue for it |
 
 A section with nothing to say contains `None.` It is still present. If Acceptance is empty, it contains `None.` and nothing else.
 

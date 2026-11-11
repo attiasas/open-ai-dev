@@ -49,6 +49,8 @@ Each child body is a `spec-issue` body: these five headings, these names, this o
 ## ADRs
 ```
 
+An ADRs entry is a `docs/adr/NNNN-title.md` path. Do not open an issue for a decision.
+
 Acceptance is that piece's criteria from the requester, copied. A piece with no criteria, "make it reasonable", "TBD", or only uncheckable criteria has Acceptance `None.` and nothing else. Do not write criteria for it.
 
 Non-goals may name the sibling pieces this child does not do. You may mention the parent or a blocker in Problem. That sentence is context. It is not the link.

@@ -2,7 +2,7 @@
 
 A Cursor plugin for the basic engineering cycle on an open source repository: plan, manage, architect, develop, and QA.
 
-GitHub issues, pull requests, and comments are the work record. Architecture decisions are files in `docs/adr/`, and a GitHub issue links to each file. Cursor with Grok is the default agent. The skills are plain `SKILL.md` files, so Claude, Codex, or another agent can load the same tree.
+GitHub issues, pull requests, and comments are the work record. An architecture decision is a file in `docs/adr/`. The pull request that adds the file is the GitHub record. Cursor with Grok is the default agent. The skills are plain `SKILL.md` files, so Claude, Codex, or another agent can load the same tree.
 
 The plugin id is `oss-cycle`. This repository is [attiasas/open-ai-dev](https://github.com/attiasas/open-ai-dev).
 
@@ -43,7 +43,7 @@ Until then, the catalog in `SKILLS.md` is the list of what will be installed.
 | `setup-cycle` | Labels, issue forms, a pull request template, `AGENTS.md`, and `docs/adr/0000-template.md` |
 | `plan` | A spec issue, sliced into blocked child issues when the work is more than one merge |
 | `manage` | Label changes and short comments on the backlog |
-| `architect` | An ADR in `docs/adr/` and a decision issue that links to it |
+| `architect` | An ADR in `docs/adr/` and the pull request that adds it |
 | `develop` | Code, tests, and a pull request for one ready issue |
 | `qa` | A pass or fail comment on the pull request |
 

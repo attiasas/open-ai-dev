@@ -11,7 +11,7 @@ Phase skills are user-invoked and do not call each other. They call the model-in
 | `setup-cycle` | `github-record` | Labels, issue forms, pull request template, `AGENTS.md`, `docs/adr/0000-template.md` | written |
 | `plan` | `spec-issue`, then `slice-work` only when there is more than one mergeable piece | Spec and slice issues | planned |
 | `manage` | `github-record` | Label changes and short comments. Moves a blocked slice to `status:ready` when its blockers are closed | planned |
-| `architect` | `module-design` | One ADR plus a linked decision issue, or a survey of candidate decision issues | planned |
+| `architect` | `module-design` | An ADR file and the pull request that adds it | planned |
 | `develop` | `tdd` | Code and tests on `issue-<number>-<slug>`, and a pull request for one ready slice or bug | planned |
 | `qa` | `review-pr` | A pass or fail comment on the pull request | planned |
 
@@ -22,13 +22,13 @@ Phase skills are user-invoked and do not call each other. They call the model-in
 | `github-record` | `setup-cycle`, `manage`, and any skill that touches GitHub | The label set, `gh` usage, and where text lives | written |
 | `spec-issue` | `plan` | Issue body: Problem, Acceptance, Non-goals, Modules, ADRs | written |
 | `slice-work` | `plan` | Child issues with GitHub blocked-by links | written |
-| `module-design` | `architect` | `docs/adr/NNNN-title.md` and the decision issue that links to it | planned |
+| `module-design` | `architect` | `docs/adr/NNNN-title.md` and the pull request that adds it | planned |
 | `tdd` | `develop` | A red-green-refactor loop for one issue, using the project's test command | planned |
 | `review-pr` | `qa` | Verdict comment: acceptance criteria, ADRs, test command result | planned |
 
 ## Build order
 
-[#1 github-record](https://github.com/attiasas/open-ai-dev/issues/1) is `status:ready`. The rest are `status:blocked` until their blockers close.
+GitHub labels are the work state. The table is the blocker edges. A closed blocker does not change a label by itself.
 
 | Issue | Skill | Blocked by |
 | --- | --- | --- |

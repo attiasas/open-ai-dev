@@ -10,7 +10,7 @@ The GitHub repository for the plugin is `attiasas/open-ai-dev`. The plugin id is
 
 GitHub issues, pull requests, and comments are the work record.
 
-Architecture decisions are the exception. The decision text is an ADR file in the target repository at `docs/adr/NNNN-title.md`. A GitHub issue of type `decision` links to that path. The issue is how you find the decision. The file is the versioned text.
+Architecture decisions are files in the target repository at `docs/adr/NNNN-title.md`. The pull request that adds the file is the GitHub record. There is no decision issue and no `type:decision` label. A candidate with no file yet does not get an issue. See [ADR 0001](../../adr/0001-adr-file-and-pull-request.md).
 
 Specs, task breakdowns, and QA notes stay on GitHub. The target repository keeps code, a short `AGENTS.md`, issue and pull request templates, and `docs/adr/`.
 
@@ -45,7 +45,6 @@ An issue has one type label:
 | --- | --- |
 | `type:spec` | Parent plan. Not implemented directly. |
 | `type:slice` | One mergeable change. |
-| `type:decision` | Points at an ADR. |
 | `type:bug` | A defect. Developed like a slice. |
 
 ### What each phase writes
@@ -54,7 +53,7 @@ An issue has one type label:
 
 - `AGENTS.md` — GitHub is the work record, ADRs live in `docs/adr/`, the label meanings, and the command names
 - `docs/adr/0000-template.md` — the ADR template, not a decision
-- GitHub issue forms for spec, slice, bug, and decision
+- GitHub issue forms for spec, slice, and bug
 - A pull request template
 - The status and type labels
 
@@ -67,10 +66,9 @@ It does not rewrite the project README. It does not ask which tracker to use.
 
 **manage** changes labels and posts a short comment when it needs information or closes a duplicate. It does not rewrite spec text. When every blocker on a `status:blocked` slice is closed, manage moves that slice to `status:ready`.
 
-**architect** writes an ADR and a decision issue, or surveys:
+**architect** writes one ADR and the pull request that adds it. It calls `module-design`. It does not open a decision issue, and it does not open candidate issues for a decision that has no file yet.
 
-- One decision: `docs/adr/NNNN-title.md` on a branch, a `type:decision` issue that links to that path, and a pull request that adds the file. The issue is `status:in-review` while that pull request is open, and closes when the pull request merges.
-- Survey: candidate `type:decision` issues at `status:inbox` only. The ADR file is written after one candidate is chosen.
+- The file is `docs/adr/NNNN-title.md` on a branch. The pull request adds that file.
 
 ADR sections are Status (`proposed`, `accepted`, or `superseded by ADR-NNNN`), Context, Decision, and Consequences. The next number is one higher than the highest existing `NNNN`, ignoring `0000-template.md`.
 
@@ -98,7 +96,7 @@ User-invoked skills set `disable-model-invocation: true`. Model-invoked skills o
 | `setup-cycle` | `github-record` | Labels, issue forms, PR template, `AGENTS.md`, ADR template |
 | `plan` | `spec-issue`, and `slice-work` only when there is more than one mergeable piece | Spec and slice issues |
 | `manage` | `github-record` | Label changes and short comments |
-| `architect` | `module-design` | An ADR and a decision issue, or candidate decision issues |
+| `architect` | `module-design` | An ADR file and the pull request that adds it |
 | `develop` | `tdd` | Code, tests, and a pull request |
 | `qa` | `review-pr` | A verdict comment on the pull request |
 
@@ -109,7 +107,7 @@ User-invoked skills set `disable-model-invocation: true`. Model-invoked skills o
 | `github-record` | Label names, `gh` usage, and where text is allowed to live. Used whenever a skill creates or updates issues, pull requests, comments, or labels. |
 | `spec-issue` | The spec issue body: Problem, Acceptance, Non-goals, Modules, ADRs. |
 | `slice-work` | Child issues with GitHub blocked-by links. |
-| `module-design` | The ADR file and the decision issue that links to it. The ADR records the module boundary the change depends on. |
+| `module-design` | The ADR file and the pull request that adds it. The ADR records the module boundary the change depends on. There is no decision issue. |
 | `tdd` | Red-green-refactor for the issue being built, using the project's test command. One vertical slice. The instructions stay tool-neutral. |
 | `review-pr` | The QA comment: acceptance criteria and ADRs. |
 

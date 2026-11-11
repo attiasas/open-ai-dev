@@ -18,4 +18,4 @@ Do not add an empty skill. A `SKILL.md` with no procedure shows up as a command.
 
 ## Record
 
-Specs and task breakdowns for this plugin live on GitHub issues. An architecture decision, if one is needed while building the plugin, is `docs/adr/NNNN-title.md` plus a `type:decision` issue that links to that file.
+Specs and task breakdowns for this plugin live on GitHub issues. An architecture decision, if one is needed while building the plugin, is `docs/adr/NNNN-title.md`. The pull request that adds that file is the GitHub record. There is no decision issue.

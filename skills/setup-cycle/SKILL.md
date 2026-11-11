@@ -33,7 +33,6 @@ git add -- AGENTS.md docs/adr/0000-template.md \
   .github/ISSUE_TEMPLATE/spec.yml \
   .github/ISSUE_TEMPLATE/slice.yml \
   .github/ISSUE_TEMPLATE/bug.yml \
-  .github/ISSUE_TEMPLATE/decision.yml \
   .github/PULL_REQUEST_TEMPLATE.md
 ```
 
@@ -43,7 +42,7 @@ Stop after that commit. Do not push, open a pull request, write a spec, or start
 
 ## Labels
 
-Create these ten labels and no others. Names match `github-record`.
+Create these nine labels and no others. Names match `github-record`.
 
 | Label | Meaning |
 | --- | --- |
@@ -55,7 +54,6 @@ Create these ten labels and no others. Names match `github-record`.
 | `status:in-review` | A pull request is open. |
 | `type:spec` | Parent plan. Not implemented directly. |
 | `type:slice` | One mergeable change. |
-| `type:decision` | Points at an ADR. |
 | `type:bug` | A defect. Developed like a slice. |
 
 ```bash
@@ -67,7 +65,6 @@ gh label create "status:in-progress" --description "A branch exists and the work
 gh label create "status:in-review" --description "A pull request is open."
 gh label create "type:spec" --description "Parent plan. Not implemented directly."
 gh label create "type:slice" --description "One mergeable change."
-gh label create "type:decision" --description "Points at an ADR."
 gh label create "type:bug" --description "A defect. Developed like a slice."
 ```
 
@@ -82,12 +79,11 @@ There is no `status:done`, `status:todo`, `status:doing`, `type:feature`, `type:
 | `.github/ISSUE_TEMPLATE/spec.yml` | Issue form for `type:spec` |
 | `.github/ISSUE_TEMPLATE/slice.yml` | Issue form for `type:slice` |
 | `.github/ISSUE_TEMPLATE/bug.yml` | Issue form for `type:bug` |
-| `.github/ISSUE_TEMPLATE/decision.yml` | Issue form for `type:decision` |
 | `.github/PULL_REQUEST_TEMPLATE.md` | Pull request template |
 
 Do not create `config.yml`, `feature.yml`, `docs/specs/`, a numbered ADR, or feature source. Do not edit `README.md`. Adding a Cycle section is editing `README.md`. If this setup already changed `README.md`, restore that file to HEAD before the commit. An unstaged Cycle section is still a change. Do not stage `README.md`.
 
-`docs/adr/0000-template.md` is not a decision. The Status section contains this sentence and nothing else: `proposed, accepted, or superseded by ADR-NNNN`. A blank Status heading is not the template. Do not set Status to `accepted`. Do not fill Context, Decision, or Consequences. Do not number it `0001`. Do not open a `type:decision` issue for it. A drafted `docs/adr/0001-use-github.md`, or any other numbered ADR created during this setup, is not committed. Delete that uncommitted draft. Do not delete a numbered ADR that was already committed before setup started.
+`docs/adr/0000-template.md` is not a decision. The Status section contains this sentence and nothing else: `proposed, accepted, or superseded by ADR-NNNN`. A blank Status heading is not the template. Do not set Status to `accepted`. Do not fill Context, Decision, or Consequences. Do not number it `0001`. Do not open an issue for it. A drafted `docs/adr/0001-use-github.md`, or any other numbered ADR created during this setup, is not committed. Delete that uncommitted draft. Do not delete a numbered ADR that was already committed before setup started.
 
 ### `AGENTS.md`
 
@@ -96,7 +92,7 @@ Do not create `config.yml`, `feature.yml`, `docs/specs/`, a numbered ADR, or fea
 
 GitHub issues, pull requests, and comments are the work record. Specs, task breakdowns, and QA notes stay on GitHub. Do not put them in this repository.
 
-Architecture decisions live in `docs/adr/NNNN-title.md`. `docs/adr/0000-template.md` is the template, not a decision.
+Architecture decisions live in `docs/adr/NNNN-title.md`. The pull request that adds the file is the GitHub record. There is no decision issue. `docs/adr/0000-template.md` is the template, not a decision.
 
 ## Labels
 
@@ -119,7 +115,6 @@ An issue has one type label:
 | --- | --- |
 | `type:spec` | Parent plan. Not implemented directly. |
 | `type:slice` | One mergeable change. |
-| `type:decision` | Points at an ADR. |
 | `type:bug` | A defect. Developed like a slice. |
 
 ## Commands
@@ -190,23 +185,6 @@ body:
       required: false
 ```
 
-`.github/ISSUE_TEMPLATE/decision.yml`:
-
-```yaml
-name: Decision
-description: Points at an ADR. The decision text lives in docs/adr/, not in this issue.
-labels: ["type:decision", "status:inbox"]
-body:
-  - type: input
-    id: path
-    attributes:
-      label: ADR path
-      description: Path under docs/adr/NNNN-title.md. Not 0000-template.md.
-      placeholder: docs/adr/0001-title.md
-    validations:
-      required: true
-```
-
 ### `.github/PULL_REQUEST_TEMPLATE.md`
 
 ```markdown
@@ -217,7 +195,7 @@ Closes #
 ## ADRs
 ```
 
-The pull request template does not replace the four issue forms. Commit both.
+The pull request template does not replace the three issue forms. Commit both.
 
 ## Common mistakes
 
@@ -225,7 +203,8 @@ The pull request template does not replace the four issue forms. Commit both.
 - Editing `README.md` and calling the edit "not a rewrite."
 - Creating `status:done` or `type:feature`.
 - Skipping the blank ADR template, or committing `docs/adr/0001-use-github.md` as the setup decision.
-- Skipping the four issue forms because a pull request template exists.
+- Skipping the three issue forms because a pull request template exists.
+- Creating `type:decision` or `.github/ISSUE_TEMPLATE/decision.yml`.
 - Writing `docs/specs/` or feature code in the same commit.
 - Doing none of the setup because the request also asks for those extras.
 
@@ -238,14 +217,15 @@ The pull request template does not replace the four issue forms. Commit both.
 | "It's the workflow doc. I trimmed it to what's real tonight." | Restore `README.md` to HEAD. An unstaged Cycle section is still a change. |
 | "The ADR is already written, so committing it is the honest finish." | Setup does not write a decision. The only ADR path is `docs/adr/0000-template.md`. |
 | "An empty template is not a useful artifact." | The template is required. It stays empty. It is not `0001`. |
-| "Skip the issue forms tonight. A pull request template is enough." | Commit the four issue forms and the pull request template. |
-| "status:done is the one the maintainer asked for." | There is no `status:done`. Create the ten labels and no others. |
+| "Skip the issue forms tonight. A pull request template is enough." | Commit the three issue forms and the pull request template. |
+| "status:done is the one the maintainer asked for." | There is no `status:done`. Create the nine labels and no others. |
+| "Open a type:decision issue so the ADR is findable." | There is no decision issue. Setup does not create `type:decision`. |
 | "Ask which tracker before writing anything." | Do not ask. GitHub is the tracker. |
-| "I will not invent labels, so I will not set up." | The ten names are listed. Create those. Refuse the spec, the feature code, and the extra labels. |
+| "I will not invent labels, so I will not set up." | The nine names are listed. Create those. Refuse the spec, the feature code, and the extra labels. |
 | "type:feature matches how we talk about the work." | There is no `type:feature`. Use `type:spec` and `type:slice`. |
 
 ## Red flags
 
 Stop if you are about to ask which tracker to use, edit `README.md`, leave a Cycle section unstaged, create a label that is not in the table, commit a numbered ADR, leave Status blank, fill in `0000-template.md`, skip an issue form, add `docs/specs/` or feature code, or leave the repository without the file table.
 
-Create the ten labels and commit the file table instead.
+Create the nine labels and commit the file table instead.
